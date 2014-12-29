@@ -5,7 +5,7 @@ function love.load()
 end
 
 function love.draw()
-	love.graphics.print("Hello World",400,300)
+	love.graphics.print("Hello There!",400,300)
  	love.graphics.print("Hello World Two",400,200)
 end
 
