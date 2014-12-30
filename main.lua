@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 --Testing out LOVE 2D
 --Evan Chapman
 --December 28th 2014
@@ -8,7 +7,7 @@ function love.load()
 	io.stdout:setvbuf("no")
 
 	love.window.setTitle("Testing Love")
-=======
+
 --Testing Love engine
 --Evan Chapman
 --December 29 2014
@@ -20,7 +19,6 @@ io.stdout:setvbuf("no")
 --Called before all functions
 function love.load()
 	textX = 1
->>>>>>> d9daa3891d58bdb40df16e14f21c4a8c7766f45c
 	love.graphics.setNewFont(12)
 	love.graphics.setColor(0,0,0)
 	love.graphics.setBackgroundColor(255,255,255)
@@ -35,14 +33,12 @@ end
 
 --Called right after update
 function love.draw()
-<<<<<<< HEAD
 	love.graphics.print("Hello There!",400,300)
  	love.graphics.print("Hello World!",400,200)
-=======
 	love.graphics.print("Global time " .. globalDelta)
 	love.graphics.print("Hello There!",textX,100 + math.cos(textX))
  	love.graphics.print("Hello World Two",400,200)
->>>>>>> d9daa3891d58bdb40df16e14f21c4a8c7766f45c
+
 end
 
  --Input callbacks
