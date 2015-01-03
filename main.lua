@@ -1,3 +1,13 @@
+--Testing out LOVE 2D
+--Evan Chapman
+--December 28th 2014
+
+
+function love.load()
+	io.stdout:setvbuf("no")
+
+	love.window.setTitle("Testing Love")
+
 --Testing Love engine
 --Evan Chapman
 --December 29 2014
@@ -38,19 +48,27 @@ end
 
 --Called right after update
 function love.draw()
+<<<<<<< HEAD
 	love.graphics.setColor(255,255,255)
 
 	love.graphics.draw(mario.image,mario.x,
 		mario.y,0,mario.size.x,mario.size.y,0,0,0,0)
 
 	if debugMode == true then
+=======
+	love.graphics.print("Hello There!",400,300)
+ 	love.graphics.print("Hello World!",400,200)
+>>>>>>> 2581589db6abc2a7c0762987b0d1d21c82d5fce3
 	love.graphics.print("Global time " .. globalDelta)
 end
 	love.graphics.print("Hello There!",textX,100 + math.cos(textX))
  	love.graphics.print("Hello World Two",400,200)
 
+<<<<<<< HEAD
  	newSprite:draw()
 
+=======
+>>>>>>> 2581589db6abc2a7c0762987b0d1d21c82d5fce3
 end
 
  --Input callbacks
