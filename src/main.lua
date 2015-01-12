@@ -51,6 +51,7 @@ function love.update(dt)
 		end
 	end
 
+	--mario:update(dt)
 end
 
 --Called right after update
@@ -107,6 +108,16 @@ function love.keypressed(key)
 		debug.debug()
 	end
 
+	if key == "right" then
+		mario.direction = "right"
+		mario.moving = true
+	end
+
+	if key == "left" then
+		mario.direction = "left"
+		mario.moving = true
+	end
+
 
 	print("Key Pressed " .. key)
 end
@@ -119,6 +130,13 @@ function love.keyreleased(key)
 		end
 	end
 
+ 	if key == "right" then
+		mario.moving = false
+ 	end
+
+	if key == "left" then
+		mario.moving = false
+ 	end
 end
 
 function love.focus(f)
