@@ -26,17 +26,15 @@ function love.load()
 	love.graphics.setBackgroundColor(4,200,255) --?Not responding
 
 	sprites = {}
-	--[[
-	for i = 3, 100 do
+	numSprites = 1
+	for i = 1, numSprites do
 		sprites[i] = Sprite:create(
-			"/img/mario.png",
+			"rsc/img/mario.png",
 			love.math.random(500), love.math.random(500), .1, .1)
 	end	
-	--]]
 
-	sprites[1] = Sprite:create("rsc/img/mario.png", 10, 10, .1, .1)
-	--sprites[2] = Sprite:create("/img/mario.png", 5, 5, .1, .1)
-	print("Created sprites")
+	--sprites[1] = Sprite:create("rsc/img/mario.png", 10, 10, .1, .1)
+	--print("Created sprites")
 
 end
 
@@ -45,7 +43,7 @@ function love.update(dt)
 	globalDelta = dt
 
 	--Update every sprite
-	for i = 0 , 10 do
+	for i = 0 , #sprites do
 		if sprites[i] ~= nil then
 			sprites[i]:update(dt)
 		end
@@ -60,7 +58,7 @@ function love.draw()
 	love.graphics.setBackgroundColor(4,200,255)
 
 	--Draw every sprite
-	for i = 0, 10 do
+	for i = 0, #sprites do
 		if sprites[i] ~= nil then
 			sprites[i]:draw()
 		end
@@ -81,7 +79,7 @@ end
 
  --Input callbacks
 function love.mousepressed(x,y,button)
-	print("Button pressed " .. button)
+	--print("Button pressed " .. button)
 	if button == "l" then
 		love.audio.play(beepSound)
 	end
@@ -94,7 +92,7 @@ end
 
 function love.keypressed(key)
 	--Pass input to every sprite
-	for i = 0, 10 do
+	for i = 0, #sprites do
 		if sprites[i] ~= nil then
 			sprites[i]:HandleInput(key,"pressed")
 		end
@@ -108,12 +106,12 @@ function love.keypressed(key)
 	end
 
 
-	print("Key Pressed " .. key)
+	--print("Key Pressed " .. key)
 end
 	
 function love.keyreleased(key)
 	--Pass input to every sprite
-	for i = 0, 10 do
+	for i = 0, #sprites do
 		if sprites[i] ~= nil then
 			sprites[i]:HandleInput(key,"released")
 		end

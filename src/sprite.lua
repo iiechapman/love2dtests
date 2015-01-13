@@ -13,7 +13,7 @@ Sprite = {
 	falling = false,
 	jumping = false,
 	canJump = true,
-	image = "null"
+	image = "null",
 }
 Sprite.__index = Sprite
 
@@ -22,6 +22,7 @@ function Sprite:create(filename, x, y, sizeX, sizeY)
 	newSprite = {}
 	setmetatable(newSprite, self)
 	newSprite.image = love.graphics.newImage(filename)
+	newSprite.jumpSound = love.audio.newSource("/rsc/sound/jump.wav")
 	newSprite.x = x 
 	newSprite.y = y
 	newSprite.size = {}
@@ -44,6 +45,7 @@ function Sprite:HandleInput(key,command)
 		end
 
 		if key == "z" and self.canJump then
+			love.audio.play(self.jumpSound)
 			self.jumping = true
 			self.moving = true
 		end
@@ -80,6 +82,7 @@ function Sprite:CheckBounds()
 end
 
 function Sprite:update(dt)
+	self:CheckBounds()
 
 	if self.jumping == true then
 		self.speed.y = self.jumpSpeed
@@ -120,7 +123,6 @@ function Sprite:update(dt)
 self.x = self.x + self.speed.x
 self.y = self.y + self.speed.y
 
-self:CheckBounds()
 
 end -- Sprite:update
 

@@ -1,6 +1,5 @@
-
 --Configuration file
-require "/src/sprite"
+require "src/sprite"
 
 io.stdout:setvbuf("no")
 
