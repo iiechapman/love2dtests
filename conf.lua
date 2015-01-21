@@ -1,22 +1,15 @@
 --Configuration file
-require "src/sprite"
+--require "sprite"
+--require "platformersprite"
 
 io.stdout:setvbuf("no")
 
+
 --Global Values
 debugMode = false
-textX = 1
 
 function love.conf(t)
 	t.console = true
-end
-
-
---Just to test external functions
-function createBoxes()
-	for i = 0 , 10 , 1 do
-		print("Making a box")
-	end
 end
 
 
