@@ -1,4 +1,8 @@
 --Platformer Object
+--[[
+Note:
+This class will handle platformer object movement, however right now it is a "fish"	type movement
+--]]
 
 PlatformerObject = Sprite:new()
 
@@ -22,7 +26,7 @@ function PlatformerObject:HandlePhysics(dt)
 
 			if self.velocity.x >= self.maxSpeed.x then
 				self.velocity.x = self.maxSpeed.x
-				print("Max speed x ")
+				--print("Max speed x ")
 			end --maxspeed
 		end --right
 
@@ -34,7 +38,7 @@ function PlatformerObject:HandlePhysics(dt)
 
 			if self.velocity.x <= -self.maxSpeed.x then
 				self.velocity.x = -self.maxSpeed.x
-				print("Max speed x")
+				--print("Max speed x")
 			end -- if maxspeed
 		end -- if left
 	end -- if moving
@@ -95,6 +99,13 @@ function PlatformerObject:HandleInput(key,command)
 
 end --Sprite:handleinput
 
+
+--[[
+function PlatformerObject:update(dt)
+	print("Updating PO\n")
+end
+--]]
+
 function PlatformerObject:CheckBounds()
 	--print("Y: " .. self.y)
 	if self.pos.y > 300 then
@@ -102,7 +113,7 @@ function PlatformerObject:CheckBounds()
 		self.canJump = true
 		self.falling = false
 		self.velocity.y = 0
-		print("Changed " .. self.objectNumber)
+		--print("Changed " .. self.objectNumber)
 	else 
 		self.falling = true
 		--self.velocity.y = self.velocity.y + self.acceleration.y

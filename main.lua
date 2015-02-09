@@ -13,15 +13,14 @@ love.window.setTitle("Testing Love")
 
 --Called before all functions
 function love.load()
-	major,minor,revision,codename = love.getVersion()
-	print(codename)
-
-	loadFiles()
 
 	if debugMode == true then
+		major,minor,revision,codename = love.getVersion()
+		print(codename)
 		love.audio.play(startupSound)	
 	end
 
+	loadFiles()
 	CreateSprites()
 end
 
@@ -55,7 +54,6 @@ end
 function DrawSprites()
 	--Draw every sprite
 	Draw(sprites)
-	Draw(newSprites)
 end
 
 function Draw(group)
@@ -69,6 +67,7 @@ end
 function Update(group,dt)
 		for i = 0 , #group do
 		if group[i] ~= nil then
+			--print("Name: " .. group[i].name)
 			group[i]:update(dt)
 		end
 	end
@@ -78,23 +77,28 @@ end
 function UpdateSprites(dt)
 	--Update every sprite
 	Update(sprites,dt)
-	Update(newSprites,dt)
 end
 
 
 function CreateSprites()
 	--Creates all sprites for scene
-	newSprites = {}
-	newSprites[1] = PlatformerObject:new("rsc/img/luigi.png", 200 +
-	love.math.random(100), 200 + love.math.random(100), .1, .1)
 
 	sprites = {}
 	numSprites = 3
+
 	for i = 1, numSprites do
-		sprites[i] = Sprite:new("rsc/img/mario.png",
-			math.random(400), math.random(200) + math.random(200), .1, .1)
+		sprites[i] = PlatformerObject:new("rsc/img/mario.png",
+		math.random(400), math.random(200) + math.random(200), .1, .1)
 	end	
-	--print("Num: " .. #sprites)
+
+
+	for i = 3, 10 do
+		sprites[i] = SpaceshipObject:new("rsc/img/spaceship.png", 200 +
+		math.random(100), 200 + math.random(100), .1, .1)
+	end	
+
+	print("Total Objects: " .. Sprite:numberOfObjects())
+
 end
 
 
@@ -113,7 +117,6 @@ end
 function love.keypressed(key)
 	--Pass input to every sprite
 	HandleInput(sprites,key,"pressed")
-	HandleInput(newSprites,key,"pressed")
 
 	if key == "d" then
 		print("Debug mode:\n")
@@ -125,7 +128,6 @@ end
 function love.keyreleased(key)
 	--Pass input to every sprite
 	HandleInput(sprites,key,"released")
-	HandleInput(newSprites,key,"released")
 end
 
 

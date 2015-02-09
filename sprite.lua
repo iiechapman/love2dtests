@@ -6,6 +6,7 @@ Sprite = {}
 	Sprite.acceleration = Vector2D:new(99000,99000)
 	Sprite.maxSpeed = Vector2D:new(6000,6000)
 	Sprite.gravity = Vector2D:new(0,10)
+	Sprite.scale = Vector2D:new(1,1)
 	Sprite.jumpSpeed = -500
 	Sprite.lerpSpeed = 700
 	Sprite.size = Vector2D:new(.1,.1)
@@ -17,7 +18,8 @@ Sprite = {}
 	Sprite.falling = false
 	Sprite.jumping = false
 	Sprite.canJump = true
-	Sprite.image = "/rsc/img/mario.png"
+	Sprite.filename = "/rsc/img/mario.png"
+	Sprite.image = love.graphics.newImage(Sprite.filename)
 	Sprite.name = "Sprite"
 	Sprite.totalObjects = 0
 	--Sprite.__index = Sprite
@@ -27,7 +29,6 @@ function Sprite:new(filename, x, y, scaleX, scaleY)
 	setmetatable(newSprite, self)
 	self.__index = self
 	self.totalObjects = self.totalObjects + 1
-	print("Total obj " .. self.totalObjects)
 	newSprite.objectNumber = self.totalObjects
 	newSprite.filename = filename or "/rsc/img/mario.png"
 	newSprite.jumpSound = jumpSound or "/rsc/sound/jump.wav"
@@ -46,12 +47,20 @@ function Sprite:new(filename, x, y, scaleX, scaleY)
 	return newSprite
 end --sprite new
 
+function Sprite:numberOfObjects()
+	return self.totalObjects
+end
+
+function Sprite:AddObjectCount()
+	self.totalObjects = self.totalObjects + 1
+end 
 
 function Sprite:draw()
 	 	love.graphics.draw(self.image,self.pos.x, self.pos.y,
 	 		self.angle,self.scale.x,self.scale.y,
 	 		self.origin.x,self.origin.y,0,0)
 end -- sprite:draw
+
 
 
 function Sprite:HandleInput(key,command)
