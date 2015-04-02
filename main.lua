@@ -14,6 +14,7 @@ love.window.setTitle("Testing Love")
 --Called before all functions
 function love.load()
 
+	windowMade = love.window.setMode(1920, 1080,{fsaa = 8})
 	if debugMode == true then
 		major,minor,revision,codename = love.getVersion()
 		print(codename)
@@ -41,7 +42,7 @@ end
 
 function ClearDrawColor()
 	love.graphics.setColor(255,255,255)
-	love.graphics.setBackgroundColor(4,200,255)
+	love.graphics.setBackgroundColor(0,0,0)
 end
 
 function DebugText()
@@ -86,15 +87,20 @@ function CreateSprites()
 	sprites = {}
 	numSprites = 3
 
+--[[
 	for i = 1, numSprites do
 		sprites[i] = PlatformerObject:new("rsc/img/mario.png",
 		math.random(400), math.random(200) + math.random(200), .1, .1)
 	end	
+--]]
 
-
-	for i = 3, 10 do
-		sprites[i] = SpaceshipObject:new("rsc/img/spaceship.png", 200 +
-		math.random(100), 200 + math.random(100), .1, .1)
+	for i = 1, 1 do
+		sprites[i] = SpaceshipObject:new("rsc/img/spaceship.png",
+		math.random(600), math.random(600), .1, .1)
+		sprites[i].scale.x = .5
+		sprites[i].scale.y = .5
+		sprites[i].origin.x = 90
+		sprites[i].origin.y = 60
 	end	
 
 	print("Total Objects: " .. Sprite:numberOfObjects())

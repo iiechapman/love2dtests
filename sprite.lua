@@ -19,6 +19,7 @@ Sprite = {}
 	Sprite.jumping = false
 	Sprite.canJump = true
 	Sprite.filename = "/rsc/img/mario.png"
+	Sprite.imageSize = Vector2D:new(0,0)
 	Sprite.image = love.graphics.newImage(Sprite.filename)
 	Sprite.name = "Sprite"
 	Sprite.totalObjects = 0
@@ -33,10 +34,13 @@ function Sprite:new(filename, x, y, scaleX, scaleY)
 	newSprite.filename = filename or "/rsc/img/mario.png"
 	newSprite.jumpSound = jumpSound or "/rsc/sound/jump.wav"
 	newSprite.image = 		love.graphics.newImage(newSprite.filename)
+	width,height = newSprite.image:getDimensions()
+	Sprite.imageSize = Vector2D:new(width,height)
 	newSprite.jumpSound =	love.audio.newSource("/rsc/sound/jump.wav")
 	newSprite.pos = Vector2D:new(x,y)
 	newSprite.scale = Vector2D:new(scaleX,scaleY)
-	newSprite.origin = Vector2D:new(1,1)
+	print("W: " .. width .. " H:" .. height)
+	newSprite.origin = Vector2D:new(width/2,height/2)
 	newSprite.velocity = Vector2D:new(0,0)
 	newSprite.canJump = true
 	newSprite.moving = false
