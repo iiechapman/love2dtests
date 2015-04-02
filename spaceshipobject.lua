@@ -38,7 +38,7 @@ end
 
 --[[
 function SpaceshipObject:HandlePhysics(dt)
-
+ 
 end
 ---]]
 
